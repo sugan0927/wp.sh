@@ -35,3 +35,5 @@ To run a Bash script on a Linux system, you need to follow these steps:
    The script will start running, and you'll see the output of the commands it executes. Make sure to monitor it for any errors or prompts that require your input.
 
 Remember that running scripts with root privileges (using `sudo`) may be necessary for some tasks, especially if the script needs to install packages or make system-level changes. Be cautious when running scripts from untrusted sources and ensure you understand what the script does before executing it.
+4. ***Remember:***
+Before running the bash script, go to nano install-wp.sh and enter your WordPress domain, WordPress database, username, password, etc.  First of all you have to fill in the lines given above in the script.  If you want to use the automatic Certbot certificate, you will have to point your domain directly to the DNS server.  In case of Cloud flare you can remove DNS Proxy.  Once Let's encryption is installed you can set up your cloud flare to proxy again.
