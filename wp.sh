@@ -1,36 +1,8 @@
 #!/bin/bash
 
 # Check if running as root
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
-# Define variables
-DOMAIN="your_domain.com"
-DB_NAME="wordpress_db"
-DB_USER="wordpress_user"
-DB_PASSWORD="your_db_password"
-WEB_ROOT="/var/www/html/$DOMAIN"
-WP_VERSION="latest"
-
-# Update the system
-apt update
-apt upgrade -y
-
-# Install required packages
-apt install -y nginx mariadb-server php-fpm php-mysql php-curl php-gd php-intl php-mbstring php-xml php-xmlrpc php-zip certbot python3-certbot-nginx fail2ban
-
-# Secure MariaDB installation
-mysql_secure_installation
-
-# Create a new MariaDB database and user
-mysql -u root -p <<MYSQL_SCRIPT
-#!/bin/bash
-
-# Check if running as root
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run as root"
   exit
 fi
 
@@ -81,7 +53,7 @@ server {
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # Use the correct PHP version
     }
 
     location ~ /\.ht {
@@ -125,7 +97,7 @@ sed -i "s/username_here/$DB_USER/" $WEB_ROOT/wp-config.php
 sed -i "s/password_here/$DB_PASSWORD/" $WEB_ROOT/wp-config.php
 
 # Restart PHP-FPM
-systemctl restart php-fpm
+systemctl restart php7.4-fpm # Use the correct PHP version
 
 # Secure the server with Fail2Ban
 cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
@@ -137,4 +109,3 @@ rm /tmp/latest.tar.gz
 
 # Display information
 echo "WordPress installation is complete. You can access your site at http://$DOMAIN"
-￼Enter
