@@ -19,7 +19,7 @@ apt update
 apt upgrade -y
 
 # Install required packages
-apt install -y nginx mariadb-server php8.0-fpm php8.0-mysql php8.0-curl php8.0-gd php8.0-intl php8.0-mbstring php8.0-xml php8.0-xmlrpc php8.0-zip certbot python3-certbot-nginx fail2ban
+apt install -y nginx mariadb-server php-fpm php-mysql php-curl php-gd php-intl php-mbstring php-xml php-xmlrpc php-zip certbot python3-certbot-nginx fail2ban
 
 # Secure MariaDB installation
 mysql_secure_installation
@@ -47,7 +47,7 @@ apt update
 apt upgrade -y
 
 # Install required packages
-apt install -y nginx mariadb-server php8.0-fpm php8.0-mysql php8.0-curl php8.0-gd php8.0-intl php8.0-mbstring php8.0-xml php8.0-xmlrpc php8.0-zip certbot python3-certbot-nginx fail2ban
+apt install -y nginx mariadb-server php-fpm php-mysql php-curl php-gd php-intl php-mbstring php-xml php-xmlrpc php-zip certbot python3-certbot-nginx fail2ban
 
 # Secure MariaDB installation
 mysql_secure_installation
@@ -125,7 +125,7 @@ sed -i "s/username_here/$DB_USER/" $WEB_ROOT/wp-config.php
 sed -i "s/password_here/$DB_PASSWORD/" $WEB_ROOT/wp-config.php
 
 # Restart PHP-FPM
-systemctl restart php8.0-fpm
+systemctl restart php-fpm
 
 # Secure the server with Fail2Ban
 cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
